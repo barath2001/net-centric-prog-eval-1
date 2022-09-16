@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        /* font-size: 18px; */
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 80%;
+        max-width: 500px;
+        margin: auto;
+      }
+
+      label {
+        margin-bottom: 5px;
+        margin-top: 20px;
+      }
+
+      input {
+        width: 50%;
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 10px;
+      }
+
+      button {
+        margin: 10px 0;
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 10px;
+      }
+
+      .grid-container {
+        padding: 20px;
+        display: grid;
+        background-color: lightgrey;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="POST" onsubmit="return validate()">
+      <label for="">Prefix</label>
+      <select name="" id="">
+        <option value="Dr.">Dr.</option>
+        <option value="Mr.">Mr.</option>
+        <option value="Ms.">Ms.</option>
+      </select>
+
+      <label for="">First Name</label>
+      <input id="fname" type="text" />
+
+      <label for="">Last Name</label>
+      <input id="lname" type="text" />
+
+      <label for="">Organization</label>
+      <input type="text" />
+
+      <label for="">Title</label>
+      <input type="text" />
+
+      <label for="">Relationship to Student</label>
+      <input type="text" />
+
+      <label for="">Telephone</label>
+      <input id="phone" type="text" />
+
+      <label for="">Email</label>
+      <input id="email" type="text" />
+
+      <label for="">Application information</label>
+      <div class="grid-container">
+        <label for=""></label>
+        <label for="">Upper 1 to 2%</label>
+        <label for="">Upper 10%</label>
+        <label for="">Upper 25%</label>
+        <label for="">Upper 50%</label>
+        <label for="">Lower Half</label>
+        <label for="">No Basis for Judgement</label>
+
+        <label for="">Academic Performance</label>
+        <input type="radio" name="aca" id="" />
+        <input type="radio" name="aca" id="" />
+        <input type="radio" name="aca" id="" />
+        <input type="radio" name="aca" id="" />
+        <input type="radio" name="aca" id="" />
+        <input type="radio" name="aca" id="" />
+
+        <label for="">Intellectual Ability</label>
+        <input type="radio" name="int" id="" />
+        <input type="radio" name="int" id="" />
+        <input type="radio" name="int" id="" />
+        <input type="radio" name="int" id="" />
+        <input type="radio" name="int" id="" />
+        <input type="radio" name="int" id="" />
+
+        <label for="">Ability to Express Him/Herself</label>
+        <input type="radio" name="exp" id="" />
+        <input type="radio" name="exp" id="" />
+        <input type="radio" name="exp" id="" />
+        <input type="radio" name="exp" id="" />
+        <input type="radio" name="exp" id="" />
+        <input type="radio" name="exp" id="" />
+
+        <label for="">Motivation for Proposed Field of Study</label>
+        <input type="radio" name="mot" id="" />
+        <input type="radio" name="mot" id="" />
+        <input type="radio" name="mot" id="" />
+        <input type="radio" name="mot" id="" />
+        <input type="radio" name="mot" id="" />
+        <input type="radio" name="mot" id="" />
+      </div>
+
+      <label for="">Would you admit the applicant in your department</label>
+      <div class="radio-option">
+        <input type="radio" name="would-you-admit" />
+        <label for="">Assuredly</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" name="would-you-admit" />
+        <label for="">Probably</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" name="would-you-admit" />
+        <label for="">Possibly</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" name="would-you-admit" />
+        <label for="">No</label>
+      </div>
+
+      <label for="">Submission</label>
+      <input type="text" />
+
+      <button>Submit</button>
+      <button>Save for later</button>
+      <button type="button" onclick="display()">Display</button>
+    </form>
+
+    <script>
+      function validate() {
+        const email = document.getElementById("email").value;
+        const fname = document.getElementById("fname").value;
+        const lname = document.getElementById("lname").value;
+        const phone = document.getElementById("phone").value;
+        const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
+        const regPhone = /^\d{10}$/;
+
+        if (email == "") {
+          window.alert("Email is empty!");
+          return false;
+        }
+
+        if (!regEmail.test(email)) {
+          window.alert("Email is invalid!");
+          return false;
+        }
+
+        if (fname == "") {
+          window.alert("First name is empty!");
+          return false;
+        }
+
+        if (lname == "") {
+          window.alert("Last name is empty!");
+          return false;
+        }
+
+        if (phone == "") {
+          window.alert("Phone number is empty!");
+          return false;
+        }
+
+        if (!regPhone.test(phone)) {
+          window.alert("Phone number is invalid!");
+          return false;
+        }
+
+        return true;
+      }
+
+      function display() {
+        const email = document.getElementById("email").value;
+        const fname = document.getElementById("fname").value;
+        const lname = document.getElementById("lname").value;
+
+        const message = `\n
+        The email is ${email} \n
+        The applicant name is Barath J\n
+        Applying to Stony Brook University Office of Graduate and Health Sciences Admissions\n
+        Recommender ${fname} ${lname}`;
+
+        window.alert(message);
+      }
+    </script>
+  </body>
+</html>
